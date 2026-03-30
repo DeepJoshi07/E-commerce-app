@@ -2,6 +2,8 @@
 @use "dashboard";
 @use "product";
 @use "chart";
+@use "dashboardapp";
+@use "mediaquery";
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

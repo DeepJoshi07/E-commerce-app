@@ -15,8 +15,10 @@ interface DataType {
 
 const image1 =
   "https://m.media-amazon.com/images/I/41nPYng2PBL._SR290,290_.jpg";
+
 const image2 =
   "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/dell-plus/db16255/media-gallery/non-touch/laptop-dell-plus-db16255nt-ice-bl-fpr-gallery-5.psd?fmt=png-alpha&pscan=auto&scl=1&hei=804&wid=979&qlt=100,1&resMode=sharp2&size=979,804&chrss=full";
+  
 const arr: DataType[] = [
   {
     photo: <img src={image2} alt="" />,

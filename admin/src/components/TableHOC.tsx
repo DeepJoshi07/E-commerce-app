@@ -1,4 +1,4 @@
-import {
+  import {
   AiOutlineSortAscending,
   AiOutlineSortDescending,
 } from "react-icons/ai";

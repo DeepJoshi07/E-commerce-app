@@ -89,19 +89,19 @@ function DivThree({ location }: { location: Location }) {
       <ul>
         <Li
           text="Stopwatch"
-          url="/admin/app/stopwatch"
+          url="/admin/apps/stopwatch"
           location={location}
           Icon={FaStopwatch}
         />
         <Li
           text="Coupon"
-          url="/admin/app/coupon"
+          url="/admin/apps/coupon"
           location={location}
           Icon={RiCoupon3Fill}
         />
         <Li
           text="Toss"
-          url="/admin/app/toss"
+          url="/admin/apps/toss"
           location={location}
           Icon={FaGamepad}
         />
