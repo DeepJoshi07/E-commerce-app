@@ -1,7 +1,9 @@
 
 function Loading() {
   return (
-    <div>Loading...</div>
+    <section className="loader">
+      <div></div>
+    </section>
   )
 }
 

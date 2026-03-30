@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Loading from "./components/Loading";
 
@@ -7,21 +7,32 @@ const Transaction = lazy(() => import("./pages/Transaction"));
 const Products = lazy(() => import("./pages/Products"));
 const Customers = lazy(() => import("./pages/Customers"));
 const NewProduct = lazy(() => import("./pages/management/NewProduct"));
-const ProductManagement = lazy(() => import("./pages/management/ProductManagement"));
-const TransactionManagement = lazy(() => import("./pages/management/Transactionmanagement"));
+const ProductManagement = lazy(
+  () => import("./pages/management/ProductManagement"),
+);
+const TransactionManagement = lazy(
+  () => import("./pages/management/Transactionmanagement"),
+);
 const BarCharts = lazy(() => import("./pages/cherts/BarCharts"));
 const PieCharts = lazy(() => import("./pages/cherts/PieCharts"));
 const LineCharts = lazy(() => import("./pages/cherts/LineCharts"));
-const StopWatch = lazy(()=> import ("./pages/apps/StopWatch"));
-const Coupon = lazy(()=> (import ("./pages/apps/Coupon")));
-const Toss = lazy(()=> (import ("./pages/apps/Toss")));
-
+const StopWatch = lazy(() => import("./pages/apps/StopWatch"));
+const Coupon = lazy(() => import("./pages/apps/Coupon"));
+const Toss = lazy(() => import("./pages/apps/Toss"));
 
 const App = () => {
   return (
     <Router>
-      <Suspense fallback={<Loading/>}>
+      <Suspense fallback={<Loading />}>
         <Routes>
+          <Route
+            path="/"
+            element={
+              <Link to="/admin/dashboard">
+                <button>Visit Dashboard</button>
+              </Link>
+            }
+          />
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/products" element={<Products />} />
           <Route path="/admin/transaction" element={<Transaction />} />
@@ -29,22 +40,24 @@ const App = () => {
 
           {/* charts */}
 
-          <Route path="/admin/chart/bar" element={<BarCharts/>}></Route>
-          <Route path="/admin/chart/pie" element={<PieCharts/>}></Route>
-          <Route path="/admin/chart/line" element={<LineCharts/>}></Route>
+          <Route path="/admin/chart/bar" element={<BarCharts />}></Route>
+          <Route path="/admin/chart/pie" element={<PieCharts />}></Route>
+          <Route path="/admin/chart/line" element={<LineCharts />}></Route>
 
           {/* management */}
 
-          <Route path="/admin/product/new" element={<NewProduct/>}/>
-          <Route path="/admin/product/:id" element={<ProductManagement/>}/>
-          <Route path="/admin/transaction/:id" element={<TransactionManagement/>}/>
+          <Route path="/admin/product/new" element={<NewProduct />} />
+          <Route path="/admin/product/:id" element={<ProductManagement />} />
+          <Route
+            path="/admin/transaction/:id"
+            element={<TransactionManagement />}
+          />
 
           {/* Apps */}
-          
-          <Route path="/admin/apps/stopwatch" element={<StopWatch/>}/>
-          <Route path="/admin/apps/coupon" element={<Coupon/>}/>
-          <Route path="/admin/apps/toss" element={<Toss/>}/>
-          
+
+          <Route path="/admin/apps/stopwatch" element={<StopWatch />} />
+          <Route path="/admin/apps/coupon" element={<Coupon />} />
+          <Route path="/admin/apps/toss" element={<Toss />} />
         </Routes>
       </Suspense>
     </Router>
