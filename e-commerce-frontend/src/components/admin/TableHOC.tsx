@@ -3,14 +3,14 @@ import {
   AiOutlineSortDescending,
 } from "react-icons/ai";
 import {
-  Column,
+  type Column,
   usePagination,
   useSortBy,
   useTable,
-  TableOptions,
+  type TableOptions,
 } from "react-table";
 
-function TableHOC<T extends Object>(
+function TableHOC<T extends object>(
   columns: Column<T>[],
   data: T[],
   containerClassname: string,
@@ -46,10 +46,12 @@ function TableHOC<T extends Object>(
 
         <table className="table" {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+            {headerGroups.map((headerGroup) => {
+              const {key,...headerGroupProps} = headerGroup.getHeaderGroupProps()
+              return <tr key={key} {...headerGroupProps}>
+                {headerGroup.headers.map((column) => {
+                  const {key,...columnProps} = column.getHeaderProps(column.getSortByToggleProps())
+                 return <th key={key} {...columnProps}>
                     {column.render("Header")}
                     {column.isSorted && (
                       <span>
@@ -62,19 +64,20 @@ function TableHOC<T extends Object>(
                       </span>
                     )}
                   </th>
-                ))}
+                })}
               </tr>
-            ))}
+  })}
           </thead>
           <tbody {...getTableBodyProps()}>
             {page.map((row) => {
               prepareRow(row);
-
+              const {key,...rowProps} = row.getRowProps();
               return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  ))}
+                <tr key={key} {...rowProps}>
+                  {row.cells.map((cell) => {
+                    const {key,...cellProps} = cell.getCellProps();
+                    return <td key={key} {...cellProps}>{cell.render("Cell")}</td>
+            })}
                 </tr>
               );
             })}
