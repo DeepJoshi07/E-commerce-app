@@ -11,29 +11,32 @@ import { Link } from "react-router";
 const user = { _id: "1", role: "admin" };
 
 const Header = () => {
-    const [isOpen,setisOpen] = useState(false);
+    const [isOpen,setIsOpen] = useState<boolean>(false);
+    const logoutHandler = () => {
+      
+    }
   return (
     <nav className="header">
-      <Link to={"/"} onClick={() => setisOpen(false)}>Home</Link>
-      <Link to={"/search"}>
+      <Link to={"/"} onClick={() => setIsOpen(false)}>HOME</Link>
+      <Link to={"/search"} onClick={() => setIsOpen(false)}>
         <FaSearch />
       </Link>
-      <Link to={"/cart"}>
+      <Link to={"/cart"} onClick={() => setIsOpen(false)}>
         <FaShoppingBag />
       </Link>
 
       {user?._id?(
         <>
-          <button onClick={() => setisOpen(prev => !prev)}>
+          <button onClick={() => setIsOpen(prev => !prev)}>
             <FaUser />
           </button>
           <dialog open={isOpen}>
             <div>
               {user.role === "admin" && (
-                <Link to="/admin/dashboard">Admin</Link>
+                <Link onClick={() => setIsOpen(false)} to="/admin/dashboard">Admin</Link>
               )}
-              <Link to="/order">Orders</Link>
-              <button>
+              <Link onClick={() => setIsOpen(false)} to="/order">Orders</Link>
+              <button onClick={logoutHandler}>
                 <FaSignOutAlt />
               </button>
             </div>
