@@ -6,7 +6,10 @@ import Header from "./components/header";
 const Home = lazy(() => import("./pages/home"));
 const Search = lazy(() => import("./pages/search"));
 const Cart = lazy(() => import("./pages/cart"));
-
+const Shipping = lazy(() => import("./pages/shipping"));
+const Orders = lazy(() => import("./pages/orders"));
+const OrderDetails = lazy(() => import("./pages/order-details"));
+const Login = lazy(() => import("./pages/login"));
 // admin routes
 const Dashboard = lazy(() => import("./pages/admin/dashboard"));
 const Products = lazy(() => import("./pages/admin/products"));
@@ -31,12 +34,20 @@ const TransactionManagement = lazy(
 const App = () => {
   return (
     <Router>
-      <Header/>
+      <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/cart" element={<Cart />} />
+          {/* Not logged in route */}
+          <Route path="/login" element={<Login/>}/>
+          {/* logged in use routes */}
+          <Route>
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/orders/:id" element={<OrderDetails />} />
+          </Route>:
           // admin routes
           <Route
             element={
